@@ -14,9 +14,9 @@ class TestUser(unittest.TestCase):
     def setUpClass(cls):
         """set up for test"""
         cls.user = User()
-        cls.user.first_name = "Kevin"
-        cls.user.last_name = "Yook"
-        cls.user.email = "yook00627@gmamil.com"
+        cls.user.first_name = "Yitbarek"
+        cls.user.last_name = "Wendimu"
+        cls.user.email = "yitbarekw@hu.edu.et"
         cls.user.password = "secret"
 
     @classmethod
