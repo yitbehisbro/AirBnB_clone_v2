@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#Configurations for ngnix to deploy AirBnB project
 sudo ldconfig -p | grep nginx
 
 if [ "$?" -eq 0 ]
