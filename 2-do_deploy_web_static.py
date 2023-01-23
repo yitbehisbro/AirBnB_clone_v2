@@ -11,24 +11,27 @@ env.user = "ubuntu"
 
 def do_deploy(archive_path):
     """ fab function to deploy archived file to the servers """
-
     try:
         if os.path.exists(archive_path):
-            put(archive_path, remote="/tmp/", preserve_mode=True)
-            filename = shlex.split(archive_path.replace('/', ' '))
-            filename = shlex.split(name[1].replace('.', ' '))
-            filename = name[0]
-            release = "data/web_static/releases/"
+            filename1 = archive_path.replace('/', ' ')
+            filename1 = shlex.split(filename1)
+            filename1 = filename1[-1]
 
-            run('mkdir -p /{}{}/'.format(release, filename))
-            run('tar -xzf /tmp/{}.tgz -C /{}'.format(filename, release))
-            run('rm /tmp/{}.tgz'.format(filename))
-            o = "/{}{}/web_static/*".format(release, filename)
-            n = "/{}{}/".format(filename)
-            run('mv {} {}'.format(o, n))
-            run('rm -rf {}/web_static'.format(n))
-            run('rm -rf /data/web_static/current')
-            run('ln -s {} /data/web_static/current'.format(n))
+            filename2 = shlex.split(archive_path.replace('/', ' '))
+            filename2 = shlex.split(filename2[1].replace('.', ' '))
+            filename2 = filename2[0]
+
+            releases_path = "/data/web_static/releases/{}/".format(filename2)
+            tmp_path = "/tmp/{}".format(filename1)
+
+            put(archive_path, "/tmp/", preserve_mode=True)
+            run("mkdir -p {}".format(releases_path))
+            run("tar -xzf {} -C {}".format(tmp_path, releases_path))
+            run("rm {}".format(tmp_path))
+            run("mv {}web_static/* {}".format(releases_path, releases_path))
+            run("rm -rf {}web_static".format(releases_path))
+            run("rm -rf /data/web_static/current")
+            run("ln -s {} /data/web_static/current".format(releases_path))
             print("New version deployed!")
             return True
         else:
