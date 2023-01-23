@@ -2,6 +2,7 @@
 #Configurations for ngnix to deploy AirBnB project
 sudo apt update
 sudo apt -y install nginx
+sudo service nginx start
 sudo mkdir -p /data/
 sudo mkdir -p /data/web_static/
 sudo mkdir -p /data/web_static/releases/
