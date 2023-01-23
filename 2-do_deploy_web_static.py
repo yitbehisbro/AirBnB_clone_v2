@@ -2,6 +2,7 @@
 """ Deploy archive to the both servers """
 from datetime import datetime
 import os
+import shlex
 from fabric.api import *
 
 
@@ -27,13 +28,16 @@ def do_deploy(archive_path):
     try:
         if os.path.exists(archive_path):
             put(archive_path, remote="/tmp/", preserve_mode=True)
-            path_name = run('export FILENAME={}'.format(archive_path))
-            filename = run('echo $FILENAME | grep -o web_static_..............')
-            run('mkdir -p /data/web_static/releases/{}/'.format(filename))
-            run('tar -xzf /tmp/{}.tgz -C /data/web_static/releases/'.format(filename))
+            filename = shlex.split(archive_path.replace('/', ' '))
+            filename = shlex.split(name[1].replace('.', ' '))
+            filename = name[0]
+            release = "data/web_static/releases/"
+
+            run('mkdir -p /{}{}/'.format(release, filename))
+            run('tar -xzf /tmp/{}.tgz -C /{}'.format(filename, release))
             run('rm /tmp/{}.tgz'.format(filename))
-            o = "/data/web_static/releases/{}/web_static/*".format(filename)
-            n = "/data/web_static/releases/{}/".format(filename)
+            o = "/{}{}/web_static/*".format(release, filename)
+            n = "/{}{}/".format(filename)
             run('mv {} {}'.format(o, n))
             run('rm -rf {}/web_static'.format(n))
             run('rm -rf /data/web_static/current')
