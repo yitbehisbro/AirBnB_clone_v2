@@ -9,19 +9,6 @@ from fabric.api import *
 env.hosts = ['54.237.120.163', '52.91.101.243']
 env.user = "ubuntu"
 
-def do_pack():
-    """ fab function to create a tar file """
-    try:
-        if not os.path.exists("versions"):
-            local('mkdir versions')
-        t = datetime.now()
-        f = "%Y%m%d%H%M%S"
-        archived_file = 'versions/web_static_{}.tgz'.format(t.strftime(f))
-        local('tar -cvzf {} web_static'.format(archived_file))
-        return archived_file
-    except Exception:
-        return None
-
 def do_deploy(archive_path):
     """ fab function to deploy archived file to the servers """
     
