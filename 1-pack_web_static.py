@@ -6,6 +6,7 @@ import os
 
 
 def do_pack():
+    """ fab function to create a tar file """
     try:
         if not os.path.exists("versions"):
             local('mkdir versions')
