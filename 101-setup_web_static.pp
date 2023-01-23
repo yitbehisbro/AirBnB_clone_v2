@@ -1,4 +1,5 @@
-# Puppet for setup
+# Script that configures Nginx server with some folders and files
+
 exec {'update':
   provider => shell,
   command  => 'sudo apt-get -y update',
