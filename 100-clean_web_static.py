@@ -6,6 +6,7 @@ from fabric.api import *
 env.hosts = ['54.237.120.163', '52.91.101.243']
 env.user = "ubuntu"
 
+
 def do_clean(number=0):
     """ Removes unnecessary versions """
 

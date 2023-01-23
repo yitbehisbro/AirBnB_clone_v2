@@ -9,6 +9,7 @@ import os
 env.hosts = ['54.237.120.163', '52.91.101.243']
 env.user = "ubuntu"
 
+
 def deploy():
     """ DEPLOYS """
     try:
