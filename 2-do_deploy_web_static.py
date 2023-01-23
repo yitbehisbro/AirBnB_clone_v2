@@ -11,7 +11,7 @@ env.user = "ubuntu"
 
 def do_deploy(archive_path):
     """ fab function to deploy archived file to the servers """
-    
+
     try:
         if os.path.exists(archive_path):
             put(archive_path, remote="/tmp/", preserve_mode=True)
