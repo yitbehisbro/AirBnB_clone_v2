@@ -11,7 +11,7 @@ sudo mkdir -p /data/web_static/releases/test/
 # sudo mkdir -p /data/web_static/current
 sudo touch /data/web_static/releases/test/index.html
 sudo chown "$USER" /data/web_static/releases/test/index.html
-sudo echo "The NGINX SOFTWARE installed successfully!!" | sudo tee -i /data/web_static/releases/test/index.html
+sudo echo "The NGINX SOFTWARE installed successfully!!" | sudo tee -i /data/web_static/releases/test/index.html > /dev/null > 2>&1
 # sudo ln -sf /data/web_static/current /data/web_static/releases/test/
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 sudo chown -R "ubuntu" /data/
