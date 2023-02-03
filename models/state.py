@@ -21,6 +21,7 @@ class State(BaseModel, Base):
 
     @property
     def cities(self):
+        """ Public getter method for cities """
         var = models.storage.all()
         lista = []
         result = []
