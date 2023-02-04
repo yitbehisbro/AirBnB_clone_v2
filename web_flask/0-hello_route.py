@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-""" Run the first flask """
+""" Run the first flask application """
+
 from flask import Flask
 
 app = Flask(__name__)
@@ -12,4 +13,5 @@ def hello_hbnb():
 
 
 if __name__ == "__main__":
+    """ Run the first flask application """
     app.run(host='0.0.0.0', port=5000)
