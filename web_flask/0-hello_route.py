@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """ Run the first flask application """
-
 from flask import Flask
 
 app = Flask(__name__)
